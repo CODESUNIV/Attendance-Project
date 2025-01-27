@@ -1,10 +1,13 @@
 # Use Node.js 16 Alpine image as the base
 FROM node:16-alpine
 
+# Install additional dependencies to ensure npm is available
+RUN apk add --no-cache bash curl
+
 # Set the working directory inside the container
 WORKDIR /app
 
-# Copy only package files first (for efficient caching during builds)
+# Copy only package files first (to optimize Docker cache usage)
 COPY package*.json ./
 
 # Install dependencies
@@ -16,5 +19,5 @@ COPY . .
 # Expose the development port
 EXPOSE 3030
 
-# Start the app in development mode with hosting enabled
+# Start the app in development mode
 CMD ["npm", "run", "dev", "--", "--host", "0.0.0.0"]
