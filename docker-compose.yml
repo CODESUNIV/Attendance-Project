@@ -6,11 +6,8 @@ services:
     ports:
       - "3030:3030"
     volumes:
-      - ./frontend:/app  # Mount frontend code to the container
-    working_dir: /app    # Set working directory
-    command: npm run dev  # Command to run the frontend
-    environment:
-      - NODE_ENV=development
+      - ./frontend:/app
+
 
   backend:
     build:
@@ -20,11 +17,8 @@ services:
       - "15000:5000"
       - "5005:5005"
     volumes:
-      - ./backend:/app  # Mount backend code to the container
-    working_dir: /app    # Set working directory
-    command: npm run dev  # Command to run the backend
-    environment:
-      - NODE_ENV=development
+      - ./backend:/app
+
 
 networks:
   default:
