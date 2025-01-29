@@ -21,7 +21,7 @@ const ChatBot = () => {
   ];
 
   const handleButtonClick = (message) => {
-    fetch("http://localhost:5005/webhooks/rest/webhook", {
+    fetch("http://rasa-attendance.myvirtualassistant.fr/webhooks/rest/webhook", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
