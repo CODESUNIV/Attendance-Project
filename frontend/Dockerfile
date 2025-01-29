@@ -16,6 +16,12 @@ RUN npm install
 # Copy the rest of the application code into the container
 COPY . .
 
+# Fix permissions for the app directory
+RUN chown -R node:node /app
+
+# Switch to the non-root 'node' user
+USER node
+
 # Expose the development port
 EXPOSE 3030
 
