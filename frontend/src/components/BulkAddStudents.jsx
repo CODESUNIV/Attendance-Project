@@ -22,7 +22,7 @@ const BulkAddStudents = ({ handleClose }) => {
       return;
     }
 
-    axios.post('http://127.0.0.1:15000/adminstudents/bulk', { students: validInputs })
+    axios.post('http://api-attendance.myvirtualassistant.fr/adminstudents/bulk', { students: validInputs })
       .then(() => {
         alert('Students added successfully');
         handleClose();
@@ -51,7 +51,7 @@ const BulkAddStudents = ({ handleClose }) => {
         program: row.Program,
       }));
 
-      axios.post('http://127.0.0.1:15000/adminstudents/bulk', { students: formattedData })
+      axios.post('http://api-attendance.myvirtualassistant.fr/adminstudents/bulk', { students: formattedData })
         .then(() => {
           alert('Students added successfully');
           handleClose();

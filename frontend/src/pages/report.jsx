@@ -53,15 +53,15 @@ export default function ReportPage() {
 
   const fetchInitialData = async (professor) => {
     try {
-      const courseResponse = await fetch(`http://127.0.0.1:15000/courses/${professor}`);
+      const courseResponse = await fetch(`http://api-attendance.myvirtualassistant.fr/courses/${professor}`);
       const courseData = await courseResponse.json();
       setCourses(courseData.courses);
 
-      const studentResponse = await fetch('http://127.0.0.1:15000/students');
+      const studentResponse = await fetch('http://api-attendance.myvirtualassistant.fr/students');
       const studentList = await studentResponse.json();
       setStudents(studentList.students);
 
-      const yearResponse = await fetch('http://127.0.0.1:15000/academic_years'); // Corrected route
+      const yearResponse = await fetch('http://api-attendance.myvirtualassistant.fr/academic_years'); // Corrected route
       const yearData = await yearResponse.json();
       setAcademicYears(yearData.academicYears || []); // Match JSON key returned by backend
     } catch (error) {
@@ -72,7 +72,7 @@ export default function ReportPage() {
   useEffect(() => {
     const fetchLogs = async () => {
       try {
-        let url = `http://127.0.0.1:15000/logs/${academicYear}`;
+        let url = `http://api-attendance.myvirtualassistant.fr/logs/${academicYear}`;
         const params = [];
         if (selectedStudent !== 'all') params.push(`student=${selectedStudent}`);
         if (selectedCourse !== 'all') params.push(`course=${selectedCourse}`);

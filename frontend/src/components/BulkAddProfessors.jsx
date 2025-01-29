@@ -33,7 +33,7 @@ const BulkAddProfessors = ({ handleClose }) => {
     }
 
     axios
-      .post('http://127.0.0.1:15000/adminprofessors/bulk', { professors: validInputs })
+      .post('http://api-attendance.myvirtualassistant.fr/adminprofessors/bulk', { professors: validInputs })
       .then(() => {
         alert('Professors added successfully');
         handleClose();
@@ -62,7 +62,7 @@ const BulkAddProfessors = ({ handleClose }) => {
       }));
 
       axios
-        .post('http://127.0.0.1:15000/adminprofessors/bulk', { professors: formattedData })
+        .post('http://api-attendance.myvirtualassistant.fr/adminprofessors/bulk', { professors: formattedData })
         .then(() => {
           alert('Professors added successfully');
           handleClose();

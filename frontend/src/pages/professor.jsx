@@ -43,7 +43,7 @@ export default function ProfessorPage() {
 
   const fetchCourses = async (professor) => {
     try {
-      const response = await fetch(`http://127.0.0.1:15000/courses/${professor}`);
+      const response = await fetch(`http://api-attendance.myvirtualassistant.fr/courses/${professor}`);
       const data = await response.json();
       setCourses(data.courses || []);
     } catch (error) {
@@ -53,7 +53,7 @@ export default function ProfessorPage() {
 
   const fetchStudentData = async (course) => {
     try {
-      const response = await fetch(`http://127.0.0.1:15000/students/${course}`);
+      const response = await fetch(`http://api-attendance.myvirtualassistant.fr/students/${course}`);
       const data = await response.json();
       setStudentData(data.students || []);
     } catch (error) {
@@ -72,7 +72,7 @@ export default function ProfessorPage() {
     updatedData[index].delayTime = newStatus;
 
     try {
-      const response = await fetch("http://127.0.0.1:15000/update_delay_time", {
+      const response = await fetch("http://api-attendance.myvirtualassistant.fr/update_delay_time", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -98,7 +98,7 @@ export default function ProfessorPage() {
       return;
     }
     try {
-      const response = await fetch("http://127.0.0.1:15000/start_face_recognition", {
+      const response = await fetch("http://api-attendance.myvirtualassistant.fr/start_face_recognition", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -112,7 +112,7 @@ export default function ProfessorPage() {
 
         // Poll for updates
         const id = setInterval(async () => {
-          const updatedResponse = await fetch(`http://127.0.0.1:15000/students/${selectedCourse}`);
+          const updatedResponse = await fetch(`http://api-attendance.myvirtualassistant.fr/students/${selectedCourse}`);
           if (updatedResponse.ok) {
             const updatedData = await updatedResponse.json();
             setStudentData(updatedData.students);

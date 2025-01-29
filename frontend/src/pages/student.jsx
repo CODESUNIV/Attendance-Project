@@ -73,7 +73,7 @@ const StudentPage = () => {
   }, []);
 
   const fetchLogs = useCallback(() => {
-    let url = `http://127.0.0.1:15000/logs/${selectedAcademicYear}`;
+    let url = `http://api-attendance.myvirtualassistant.fr/logs/${selectedAcademicYear}`;
     const params = selectedCourse !== "all" ? [`course=${selectedCourse}`] : [];
     if (params.length) url += `?${params.join("&")}`;
 
@@ -93,27 +93,27 @@ const StudentPage = () => {
   }, [selectedAcademicYear, selectedCourse, fetchLogs]);
 
   const fetchStudentDetails = (studentName) => {
-    fetch(`http://127.0.0.1:15000/student/${studentName}`)
+    fetch(`http://api-attendance.myvirtualassistant.fr/student/${studentName}`)
       .then((response) => response.json())
       .then((data) => {
         setStudentDetails({
           name: data.name,
           number: data.studentNumber,
-          image: `http://127.0.0.1:15000/faces/${data.imageFilename}`,
+          image: `http://api-attendance.myvirtualassistant.fr/faces/${data.imageFilename}`,
         });
       })
       .catch(() => alert("An error occurred while fetching student details."));
   };
 
   const fetchCourses = () => {
-    fetch("http://127.0.0.1:15000/course")
+    fetch("http://api-attendance.myvirtualassistant.fr/course")
       .then((response) => response.json())
       .then((data) => setCourses(data.courses))
       .catch(() => alert("An error occurred while fetching courses."));
   };
 
   const fetchAcademicYears = () => {
-    fetch("http://127.0.0.1:15000/academic_years")
+    fetch("http://api-attendance.myvirtualassistant.fr/academic_years")
       .then((response) => response.json())
       .then((data) => setAcademicYears(data.academicYears))
       .catch(() => alert("An error occurred while fetching academic years."));

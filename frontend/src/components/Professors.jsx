@@ -13,7 +13,7 @@ const Professors = ({ handleClose }) => {
   const [currentProfessor, setCurrentProfessor] = useState({ id: null, name: '', password: '', permission: 'Granted' });
 
   const fetchProfessors = useCallback(() => {
-    axios.get('http://127.0.0.1:15000/adminprofessors')
+    axios.get('http://api-attendance.myvirtualassistant.fr/adminprofessors')
       .then(response => setProfessors(response.data))
       .catch(error => console.error('Error fetching professors:', error));
   }, []);
@@ -33,12 +33,12 @@ const Professors = ({ handleClose }) => {
 
   const handleSave = () => {
     if (editing) {
-      axios.put(`http://127.0.0.1:15000/adminprofessors/${currentProfessor.id}`, currentProfessor)
+      axios.put(`http://api-attendance.myvirtualassistant.fr/adminprofessors/${currentProfessor.id}`, currentProfessor)
         .then(fetchProfessors)
         .catch(error => console.error('Error updating professor:', error));
       setEditing(false);
     } else if (newProfessor.name && newProfessor.password) {
-      axios.post('http://127.0.0.1:15000/adminprofessors', newProfessor)
+      axios.post('http://api-attendance.myvirtualassistant.fr/adminprofessors', newProfessor)
         .then(fetchProfessors)
         .catch(error => console.error('Error adding professor:', error));
     }
@@ -46,7 +46,7 @@ const Professors = ({ handleClose }) => {
   };
 
   const deleteProfessor = (id) => {
-    axios.delete(`http://127.0.0.1:15000/adminprofessors/${id}`)
+    axios.delete(`http://api-attendance.myvirtualassistant.fr/adminprofessors/${id}`)
       .then(fetchProfessors)
       .catch(error => console.error('Error deleting professor:', error));
   };

@@ -15,13 +15,13 @@ const ManageProgram = ({ handleClose }) => {
     }, []);
   
     const fetchPrograms = () => {
-      axios.get('http://127.0.0.1:15000/adminprograms')
+      axios.get('http://api-attendance.myvirtualassistant.fr/adminprograms')
         .then((response) => setPrograms(response.data))
         .catch((error) => console.error('Error fetching programs:', error));
     };
   
     const addProgram = () => {
-      axios.post('http://127.0.0.1:15000/adminprograms', { program_name: newProgram })
+      axios.post('http://api-attendance.myvirtualassistant.fr/adminprograms', { program_name: newProgram })
         .then(() => {
           fetchPrograms();
           setNewProgram('');
@@ -30,7 +30,7 @@ const ManageProgram = ({ handleClose }) => {
     };
   
     const updateProgram = (id, programName) => {
-      axios.put(`http://127.0.0.1:15000/adminprograms/${id}`, { program_name: programName })
+      axios.put(`http://api-attendance.myvirtualassistant.fr/adminprograms/${id}`, { program_name: programName })
         .then(() => {
           fetchPrograms();
           setEditing(false);
@@ -40,7 +40,7 @@ const ManageProgram = ({ handleClose }) => {
     };
   
     const deleteProgram = (id) => {
-      axios.delete(`http://127.0.0.1:15000/adminprograms/${id}`)
+      axios.delete(`http://api-attendance.myvirtualassistant.fr/adminprograms/${id}`)
         .then(fetchPrograms)
         .catch((error) => console.error('Error deleting program:', error));
     };

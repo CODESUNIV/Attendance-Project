@@ -41,7 +41,7 @@ export default function ProfessorPage() {
       setProfessorName(loggedInProfessor);
 
       // Fetch courses
-      fetch(`http://127.0.0.1:15000/courses/${loggedInProfessor}`)
+      fetch(`http://api-attendance.myvirtualassistant.fr/courses/${loggedInProfessor}`)
         .then((response) => response.json())
         .then((data) => setCourses(data.courses))
         .catch((error) => console.error('Error fetching courses:', error));

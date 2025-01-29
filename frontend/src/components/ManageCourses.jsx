@@ -12,13 +12,13 @@ const ManageCourses = ({ handleClose }) => {
     const [currentCourse, setCurrentCourse] = useState({ id: null, course: '', professor: '', program: '' });
   
     const fetchCourses = useCallback(() => {
-      axios.get('http://127.0.0.1:15000/admincourses')
+      axios.get('http://api-attendance.myvirtualassistant.fr/admincourses')
         .then(response => setCourses(response.data))
         .catch(error => console.error('Error fetching courses:', error));
     }, []);
   
     const fetchPrograms = useCallback(() => {
-      axios.get('http://127.0.0.1:15000/adminprograms')
+      axios.get('http://api-attendance.myvirtualassistant.fr/adminprograms')
         .then(response => setPrograms(response.data))
         .catch(error => console.error('Error fetching programs:', error));
     }, []);
@@ -39,12 +39,12 @@ const ManageCourses = ({ handleClose }) => {
   
     const handleSave = () => {
       if (editing) {
-        axios.put(`http://127.0.0.1:15000/admincourses/${currentCourse.id}`, currentCourse)
+        axios.put(`http://api-attendance.myvirtualassistant.fr/admincourses/${currentCourse.id}`, currentCourse)
           .then(() => fetchCourses())
           .catch(error => console.error('Error updating course:', error));
         setEditing(false);
       } else {
-        axios.post('http://127.0.0.1:15000/admincourses', newCourse)
+        axios.post('http://api-attendance.myvirtualassistant.fr/admincourses', newCourse)
           .then(() => fetchCourses())
           .catch(error => console.error('Error adding course:', error));
       }
@@ -57,7 +57,7 @@ const ManageCourses = ({ handleClose }) => {
     };
   
     const handleDelete = (id) => {
-      axios.delete(`http://127.0.0.1:15000/admincourses/${id}`)
+      axios.delete(`http://api-attendance.myvirtualassistant.fr/admincourses/${id}`)
         .then(() => fetchCourses())
         .catch(error => console.error('Error deleting course:', error));
     };

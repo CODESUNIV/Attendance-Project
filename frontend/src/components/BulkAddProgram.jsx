@@ -31,7 +31,7 @@ const BulkAddProgram = ({ handleClose }) => {
     }
 
     axios
-      .post('http://127.0.0.1:15000/adminprograms/bulk', { programs: validInputs })
+      .post('http://api-attendance.myvirtualassistant.fr/adminprograms/bulk', { programs: validInputs })
       .then(() => {
         alert('Programs added successfully');
         handleClose();
@@ -56,7 +56,7 @@ const BulkAddProgram = ({ handleClose }) => {
       const formattedData = data.map((row) => ({ name: row.ProgramName }));
 
       axios
-        .post('http://127.0.0.1:15000/adminprograms/bulk', { programs: formattedData })
+        .post('http://api-attendance.myvirtualassistant.fr/adminprograms/bulk', { programs: formattedData })
         .then(() => {
           alert('Programs added successfully');
           handleClose();

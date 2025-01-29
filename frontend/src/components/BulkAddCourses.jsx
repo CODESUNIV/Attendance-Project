@@ -13,7 +13,7 @@ const BulkAddCourses = ({ handleClose }) => {
   // Fetch programs for the dropdown
   useEffect(() => {
     axios
-      .get('http://127.0.0.1:15000/adminprograms')
+      .get('http://api-attendance.myvirtualassistant.fr/adminprograms')
       .then((response) => setPrograms(response.data))
       .catch((error) => console.error('Error fetching programs:', error));
   }, []);
@@ -35,7 +35,7 @@ const BulkAddCourses = ({ handleClose }) => {
       return;
     }
     axios
-      .post('http://127.0.0.1:15000/admincourses/bulk', { courses: validInputs })
+      .post('http://api-attendance.myvirtualassistant.fr/admincourses/bulk', { courses: validInputs })
       .then(() => {
         alert('Courses added successfully');
         handleClose();
@@ -64,7 +64,7 @@ const BulkAddCourses = ({ handleClose }) => {
       }));
 
       axios
-        .post('http://127.0.0.1:15000/admincourses/bulk', { courses: formattedData })
+        .post('http://api-attendance.myvirtualassistant.fr/admincourses/bulk', { courses: formattedData })
         .then(() => {
           alert('Courses added successfully');
           handleClose();
